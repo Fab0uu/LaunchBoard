@@ -1,0 +1,61 @@
+.button_square_unactivated {
+    -fx-effect: innershadow(gaussian, #91b8b3, 3, 0, 0, 0); /* Simule le box-shadow inset */
+    -fx-background-color: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%); /* Gradient de fond */
+    -fx-border-radius: 10px; /* Coins arrondis */
+    -fx-background-radius: 10px; /* Arrondir le fond */
+    -fx-text-fill: white; /* Couleur du texte */
+    -fx-font-family: Arial;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-min-width: 40px;  /* Largeur fixe */
+    -fx-min-height: 40px; /* Hauteur fixe */
+    -fx-max-width: 40px;  /* Largeur fixe */
+    -fx-max-height: 40px;
+    -fx-effect: dropshadow(one-pass-box, #2b665e, 0, -1, 0, 0); /* Simule le text-shadow */
+    -fx-cursor: hand; /* Curseur de pointeur */
+}
+
+.button_square_unactivated:hover {
+    -fx-background-color: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+}
+
+.button_square_unactivated:pressed {
+    -fx-translate-y: 1px; /* Simule le comportement "position relative top: 1px" */
+}
+
+.button_circle_unactivated {
+    -fx-effect: innershadow(gaussian, #91b8b3, 3, 0, 0, 0); /* Simule le box-shadow inset */
+    -fx-background-color: linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%); /* Gradient de fond */
+    -fx-border-radius: 40px; /* Coins arrondis */
+    -fx-background-radius: 40px; /* Arrondir le fond */
+    -fx-text-fill: white; /* Couleur du texte */
+    -fx-font-family: Arial;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-min-width: 40px;  /* Largeur fixe */
+    -fx-min-height: 40px; /* Hauteur fixe */
+    -fx-max-width: 40px;  /* Largeur fixe */
+    -fx-max-height: 40px;
+    -fx-effect: dropshadow(one-pass-box, #2b665e, 0, -1, 0, 0); /* Simule le text-shadow */
+    -fx-cursor: hand; /* Curseur de pointeur */
+}
+
+.button_circle_unactivated:hover {
+    -fx-background-color: linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+}
+
+.button_circle_unactivated:pressed {
+    -fx-translate-y: 1px;
+}
+
+.center {
+    -fx-background-color: #262626db;
+}
+
+.side {
+    -fx-background-color: #171717db;
+}
+
+.menu-tree {
+    -fx-background-color: #0022ffdb;
+}
