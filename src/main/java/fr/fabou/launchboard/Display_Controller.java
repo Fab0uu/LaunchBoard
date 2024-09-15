@@ -29,14 +29,6 @@ public class Display_Controller extends Application {
 
     public void display() throws MidiUnavailableException {
 
-        new Thread(() -> {
-            try {
-                this.status();
-            } catch (MidiUnavailableException | InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }).start();
-
         launch();
 
     }
@@ -59,6 +51,14 @@ public class Display_Controller extends Application {
         stage.setScene(scene);
         stage.setTitle("LaunchBoard");
         stage.show();
+
+        new Thread(() -> {
+            try {
+                this.status();
+            } catch (MidiUnavailableException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
     }
 
     protected void status() throws MidiUnavailableException, InterruptedException {
