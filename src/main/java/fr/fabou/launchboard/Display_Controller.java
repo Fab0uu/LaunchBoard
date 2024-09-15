@@ -17,10 +17,12 @@ import javax.sound.midi.MidiDevice;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
 
 
 public class Display_Controller extends Application {
+
     private MidiDevice launchpadDevice;
     private boolean connexion_status;
     private boolean last_connexion_status;
@@ -45,11 +47,10 @@ public class Display_Controller extends Application {
     @Override
     public void start(@NotNull Stage stage) throws IOException {
 
-        System.out.println("start");
-
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/assets/ui.fxml"));
+        loader.setController(this);
         Parent root = loader.load();
+
 
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo.png"))));
 
@@ -61,35 +62,19 @@ public class Display_Controller extends Application {
     }
 
     protected void status() throws MidiUnavailableException, InterruptedException {
-
-        MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
-
-        for (MidiDevice.Info info : infos) {
-            MidiDevice device = MidiSystem.getMidiDevice(info);
-            if (device.getDeviceInfo().getName().contains("Launchpad")) {
-                launchpadDevice = device;
-            }
-            else {
-                launchpadDevice = null;
-            }
-        }
-
-        this.display_status();
-        last_connexion_status = connexion_status;
-
-        if (launchpadDevice != null) {this.connexion_status = true;}
-        else {this.connexion_status = false;};
+        connexion_status = false;
 
         while (true) {
-
+            MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
             for (MidiDevice.Info info : infos) {
                 MidiDevice device = MidiSystem.getMidiDevice(info);
+
                 if (device.getDeviceInfo().getName().contains("Launchpad")) {
                     launchpadDevice = device;
                 }
-                else {
-                    launchpadDevice = null;
-                }
+            }
+            if (!Arrays.toString(infos).contains("Launchpad")){
+                launchpadDevice = null;
             }
 
             if (launchpadDevice != null) {this.connexion_status = true;}
@@ -103,13 +88,17 @@ public class Display_Controller extends Application {
 
     @FXML
     protected void display_status() {
-        if (connexion_status) {
-            Platform.runLater(() -> connected_label.setText("Connected"));
-            System.out.println("Connected");
+        System.out.println(connexion_status);
+        System.out.println(connected_label);
+        if (connected_label != null) {
+            if (connexion_status) {
+                System.out.println("Connected");
+                Platform.runLater(() -> this.connected_label.setText("Connected"));
+            } else {
+                System.out.println("Disconnected");
+                Platform.runLater(() -> this.connected_label.setText("Disconnected"));
+            }
+            ;
         }
-        else {
-            Platform.runLater(() -> this.connected_label.setText("Disconnected"));
-            System.out.println("Disconnected");
-        };
     }
 }
