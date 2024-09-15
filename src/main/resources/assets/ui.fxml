@@ -45,7 +45,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="460.0" maxWidth="900.0" minHeight="460.0" minWidth="900.0" prefHeight="460.0" prefWidth="900.0" styleClass="side" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.fabou.launchboard.Display_Controller">
+<VBox maxHeight="460.0" maxWidth="900.0" minHeight="460.0" minWidth="900.0" prefHeight="460.0" prefWidth="900.0" styleClass="side" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <SplitPane depthTest="DISABLE" dividerPositions="0.21, 0.7" focusTraversable="true" maxHeight="440.0" maxWidth="900.0" minHeight="440.0" minWidth="900.0" prefHeight="440.0" prefWidth="900.0" styleClass="side" stylesheets="@style.css" VBox.vgrow="ALWAYS">
       <items>

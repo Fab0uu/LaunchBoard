@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -49,7 +48,9 @@ public class Display_Controller extends Application {
 
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/assets/ui.fxml"));
+        loader.setController(this);
         Parent root = loader.load();
+        //this.display_status();
 
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo.png"))));
 
@@ -61,7 +62,6 @@ public class Display_Controller extends Application {
     }
 
     protected void status() throws MidiUnavailableException, InterruptedException {
-
         MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
 
         for (MidiDevice.Info info : infos) {
@@ -104,7 +104,7 @@ public class Display_Controller extends Application {
     @FXML
     protected void display_status() {
         if (connexion_status) {
-            Platform.runLater(() -> connected_label.setText("Connected"));
+            Platform.runLater(() -> this.connected_label.setText("Connected"));
             System.out.println("Connected");
         }
         else {
