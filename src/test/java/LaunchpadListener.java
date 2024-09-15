@@ -1,5 +1,3 @@
-package fr.fabou.launchboard;
-
 import javax.sound.midi.*;
 
 public class LaunchpadListener {

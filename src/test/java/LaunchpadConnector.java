@@ -1,7 +1,7 @@
 import javax.sound.midi.*;
 
 public class LaunchpadConnector {
-    public static void main(String[] args) {
+    public static void launchpadConnector() {
         try {
             // Récupérer tous les périphériques MIDI disponibles
             MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
