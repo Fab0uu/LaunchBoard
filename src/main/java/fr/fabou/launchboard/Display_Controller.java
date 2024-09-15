@@ -103,13 +103,14 @@ public class Display_Controller extends Application {
 
     @FXML
     protected void display_status() {
-        if (connexion_status) {
-            Platform.runLater(() -> this.connected_label.setText("Connected"));
-            System.out.println("Connected");
-        }
-        else {
-            Platform.runLater(() -> this.connected_label.setText("Disconnected"));
-            System.out.println("Disconnected");
+        if (connected_label != null) {
+            if (connexion_status) {
+                Platform.runLater(() -> this.connected_label.setText("Connected"));
+                System.out.println("Connected");
+            } else {
+                Platform.runLater(() -> this.connected_label.setText("Disconnected"));
+                System.out.println("Disconnected");
+            };
         };
     }
 }
