@@ -52,7 +52,6 @@ public class Display_Controller extends Application{
         this.launchpad_control = new Launchpad_Controller();
 
         Parent root = loader.load();
-        //this.display_status();
 
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo.png"))));
 
