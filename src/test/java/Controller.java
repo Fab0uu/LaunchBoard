@@ -44,7 +44,7 @@ public class Controller {
 
     // Méthode pour changer le texte dans l'interface
     public void changerTexte(String nouveauTexte) {
-        myLabel.setText(nouveauTexte); // Modification du texte du Label
+        //myLabel.setText(nouveauTexte); // Modification du texte du Label
     }
 
     // Initialisation après chargement des éléments FXML
