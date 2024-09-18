@@ -52,7 +52,7 @@ public class LaunchpadListener {
 
     // Méthode qui sera appelée lorsqu'on appuie sur le bouton 0
     public void changeButtonColor() {
-        // Implémentez la logique pour changer la couleur du bouton "sq0" ici
+        // Implémentez la logique pour changer la couleur du bouton "Bu0" ici
         // Cette partie sera liée à l'interface JavaFX
     }
 }
