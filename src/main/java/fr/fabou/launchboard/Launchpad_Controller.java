@@ -2,12 +2,16 @@ package fr.fabou.launchboard;
 
 import javax.sound.midi.*;
 import java.util.Arrays;
+import java.util.Objects;
 
 import static fr.fabou.launchboard.Main.displayer;
 
 public class Launchpad_Controller {
     public MidiDevice launchpadDevice;
     public boolean first_init = false;
+    public ShortMessage message = new ShortMessage();
+    private Receiver receiver;
+    private Transmitter transmitter;
 
     protected void status() throws MidiUnavailableException, InterruptedException, InvalidMidiDataException {
         while (true) {
@@ -44,7 +48,6 @@ public class Launchpad_Controller {
 
         launchpadDevice.open();
         Receiver receiver = launchpadDevice.getReceiver();
-        ShortMessage message = new ShortMessage();
 
         if (first_init) {
             for (int note = 0; note < 121; note++) {
@@ -94,7 +97,7 @@ public class Launchpad_Controller {
                 receiver.send(message, -1);
             }
 
-            Thread.sleep(1000);
+            Thread.sleep(100);
 
             message.setMessage(ShortMessage.NOTE_ON, 0, 0, 0);
             receiver.send(message, -1);
@@ -106,8 +109,8 @@ public class Launchpad_Controller {
             }
         }
         launchpadDevice.close();
-
         new Thread(this::listener).start();
+
     }
 
     public void listener () {
@@ -125,8 +128,7 @@ public class Launchpad_Controller {
             }
             launchpadDevice.open();
 
-            Receiver receiver = new Receiver() {
-                @Override
+            this.receiver = new Receiver() {
                 public void send(MidiMessage message, long timeStamp) {
                     if (message instanceof ShortMessage) {
                         ShortMessage sm = (ShortMessage) message;
@@ -137,17 +139,14 @@ public class Launchpad_Controller {
                             int velocity = sm.getData2();
                             String type = "note";
 
-                            if (velocity > 0) {
-                                displayer.button_showing(note, velocity, type);
-                            } else {
-                                displayer.button_showing(note, velocity, type);
-                            }
+                            displayer.button_showing(note, velocity, type);
 
                         } else if (command == ShortMessage.CONTROL_CHANGE) {
                             int control = sm.getData1();
                             int value = sm.getData2();
                             String type = "CC";
-                            displayer.button_showing(control, value, type);
+
+                            displayer.button_showing(control + 1000, value, type);
                         }
                     }
                 }
@@ -156,9 +155,10 @@ public class Launchpad_Controller {
                 public void close() {
                     System.out.println("Fermeture du Receiver.");
                 }
+
             };
 
-            Transmitter transmitter = launchpadDevice.getTransmitter();
+            this.transmitter = launchpadDevice.getTransmitter();
             transmitter.setReceiver(receiver);
 
             System.out.println("Écoute des événements MIDI du Launchpad MK1...");
@@ -166,6 +166,20 @@ public class Launchpad_Controller {
 
         } catch (MidiUnavailableException | InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void User_Choice(String to_user) throws InvalidMidiDataException, MidiUnavailableException {
+        if (Objects.equals(to_user, "user1")) {
+            message.setMessage(ShortMessage.CONTROL_CHANGE, 0, 109, 3);
+            receiver.send(message, -1);
+            message.setMessage(ShortMessage.CONTROL_CHANGE, 0, 110, 0);
+            receiver.send(message, -1);
+        } else if (Objects.equals(to_user, "user2")) {
+            message.setMessage(ShortMessage.CONTROL_CHANGE, 0, 109, 0);
+            receiver.send(message, -1);
+            message.setMessage(ShortMessage.CONTROL_CHANGE, 0, 110, 3);
+            receiver.send(message, -1);
         }
     }
 }

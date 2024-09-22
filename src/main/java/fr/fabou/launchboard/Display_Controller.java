@@ -3,22 +3,22 @@ package fr.fabou.launchboard;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
+import com.gluonhq.charm.glisten.control.CardPane;
+import javafx.scene.control.Alert.AlertType;
 
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
 import java.util.Objects;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 
 public class Display_Controller extends Application{
@@ -38,7 +38,7 @@ public class Display_Controller extends Application{
     @FXML public Button Bs112;@FXML public Button Bs113;@FXML public Button Bs114;@FXML public Button Bs115;@FXML public Button Bs116;@FXML public Button Bs117;@FXML public Button Bs118;@FXML public Button Bs119;@FXML public Button Bc120;
     @FXML public Button CC104;@FXML public Button CC105;@FXML public Button CC106;@FXML public Button CC107;@FXML public Button CC108;@FXML public Button CC109;@FXML public Button CC110;@FXML public Button CC111;
 
-    @FXML private TreeView<String> leftTreeView;
+    @FXML private CardPane<Label> menu; @FXML private Button menu_create_button;
 
     public void display() {
         launch();
@@ -46,6 +46,7 @@ public class Display_Controller extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
+        System.setProperty("javafx.platform", "desktop");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/assets/ui.fxml"));
         loader.setController(this);
 
@@ -78,7 +79,6 @@ public class Display_Controller extends Application{
         }).start();
 
         this.ButtonMapping();
-        this.TreeMenu();
     }
 
     @FXML
@@ -117,7 +117,7 @@ public class Display_Controller extends Application{
         // 112 à 119
         mapButton.put(112, Bs112);mapButton.put(113, Bs113);mapButton.put(114, Bs114);mapButton.put(115, Bs115);mapButton.put(116, Bs116);mapButton.put(117, Bs117);mapButton.put(118, Bs118);mapButton.put(119, Bs119);mapButton.put(120, Bc120);
         // Control Change
-        mapButton.put(104, CC104);mapButton.put(105, CC105);mapButton.put(106, CC106);mapButton.put(107, CC107);mapButton.put(108, CC108);mapButton.put(109, CC109);mapButton.put(110, CC110);mapButton.put(111, CC111);
+        mapButton.put(1104, CC104);mapButton.put(1105, CC105);mapButton.put(1106, CC106);mapButton.put(1107, CC107);mapButton.put(1108, CC108);mapButton.put(1109, CC109);mapButton.put(1110, CC110);mapButton.put(1111, CC111);
     }
 
     public void button_showing(int note, int velocity, String type) {
@@ -151,26 +151,31 @@ public class Display_Controller extends Application{
         }
     }
 
-    public void TreeMenu() {
-        TreeItem<String> rootItem = new TreeItem<>("Root");
-        rootItem.setExpanded(false);
+    public void Menu_Create() {
+        Label newLabel = new Label("Menu " + menu.getItems().size());
+        Platform.runLater(() -> menu.getItems().add(newLabel));
+        Platform.runLater(() -> newLabel.getStyleClass().add("menu_button"));
+    }
+    public void Button_Reset() {
+        Label newLabel = new Label("Default");
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("Warning !");
+        alert.setContentText("You are about to erase all datas !");
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonType.CANCEL.getButtonData());
+        ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(cancelButton, okButton);
 
-        TreeItem<String> branch1 = new TreeItem<>("Branch 1");
-        branch1.setExpanded(false);
+        Optional<ButtonType> result = alert.showAndWait();
 
-        TreeItem<String> leaf1 = new TreeItem<>("Leaf 1");
-        TreeItem<String> leaf2 = new TreeItem<>("Leaf 2");
-
-        branch1.getChildren().addAll(leaf1, leaf2);
-        rootItem.getChildren().add(branch1);
-
-        leftTreeView.setRoot(rootItem);
-
-        leftTreeView.setOnMouseClicked((MouseEvent event) -> {
-            TreeItem<String> selectedItem = leftTreeView.getSelectionModel().getSelectedItem();
-            if (selectedItem != null) {
-                System.out.println("Élément sélectionné : " + selectedItem.getValue());
-            }
-        });
+        if (result.isPresent() && result.get() == okButton) {
+            System.out.println("OK");
+            Platform.runLater(() -> menu.getItems().clear());
+            Platform.runLater(() -> menu.getItems().add(newLabel));
+            Platform.runLater(() -> newLabel.getStyleClass().add("menu_button"));
+        } else if (result.isPresent() && result.get() == cancelButton) {
+            System.out.println("Cancel");
+            return;
+        }
     }
 }

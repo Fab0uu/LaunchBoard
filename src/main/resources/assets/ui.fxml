@@ -32,12 +32,15 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import com.gluonhq.charm.glisten.control.CardPane?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -46,11 +49,19 @@
 
 <VBox maxHeight="460.0" maxWidth="900.0" minHeight="460.0" minWidth="900.0" prefHeight="460.0" prefWidth="900.0" styleClass="side" stylesheets="@style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <SplitPane depthTest="DISABLE" dividerPositions="0.21, 0.7" focusTraversable="true" maxHeight="440.0" maxWidth="900.0" minHeight="440.0" minWidth="900.0" prefHeight="440.0" prefWidth="900.0" styleClass="side" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+    <SplitPane depthTest="DISABLE" dividerPositions="0.21, 0.5" focusTraversable="true" maxHeight="440.0" maxWidth="900.0" minHeight="440.0" minWidth="900.0" prefHeight="440.0" prefWidth="900.0" styleClass="side" stylesheets="@style.css" VBox.vgrow="ALWAYS">
       <items>
-        <AnchorPane disable="true" focusTraversable="true" maxHeight="440.0" maxWidth="150.0" minHeight="440.0" minWidth="150.0" prefHeight="440.0" prefWidth="150.0" SplitPane.resizableWithParent="false">
+        <AnchorPane maxHeight="440.0" maxWidth="150.0" minHeight="440.0" minWidth="150.0" prefHeight="440.0" prefWidth="150.0" SplitPane.resizableWithParent="false">
                <children>
-                  <TreeView fx:id="leftTreeView" editable="true" layoutX="5.0" layoutY="5.0" maxHeight="440.0" maxWidth="150.0" minHeight="440.0" minWidth="140.0" prefHeight="440.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <CardPane fx:id="menu" layoutX="-62.0" layoutY="82.0" prefHeight="393.0" prefWidth="150.0" styleClass="menu" stylesheets="@style.css" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <Label layoutX="10.0" layoutY="10.0" styleClass="menu_button" text="Default" HBox.hgrow="ALWAYS" />
+                      <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </CardPane>
+                  <Button fx:id="menu_create_button" layoutX="14.0" layoutY="404.0" mnemonicParsing="false" onAction="#Menu_Create" prefHeight="25.0" prefWidth="25.0" text="+" textAlignment="CENTER" />
+                  <Button fx:id="reset_button" layoutX="50.0" layoutY="404.0" mnemonicParsing="false" onAction="#Button_Reset" prefHeight="25.0" prefWidth="48.0" text="Reset" textAlignment="CENTER" />
+                  <Button fx:id="menu_create_button11" layoutX="111.0" layoutY="404.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" textAlignment="CENTER" />
                </children>
         </AnchorPane>
         <ScrollPane maxHeight="440.0" maxWidth="440.0" minHeight="440.0" minWidth="440.0" prefHeight="440.0" prefWidth="440.0" SplitPane.resizableWithParent="false">
@@ -66,7 +77,7 @@
                         <Button fx:id="Bs6" layoutX="289.0" layoutY="62.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs7" layoutX="334.0" layoutY="62.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="CC104" layoutX="20.0" layoutY="16.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="CC104" layoutX="20.0" layoutY="16.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
                         <Button fx:id="CC105" layoutX="65.0" layoutY="16.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
                         <Button fx:id="CC106" layoutX="110.0" layoutY="16.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
                         <Button fx:id="CC107" layoutX="155.0" layoutY="16.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
@@ -75,9 +86,9 @@
                         <Button fx:id="CC110" layoutX="289.0" layoutY="16.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
                         <Button fx:id="CC111" layoutX="334.0" layoutY="16.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
 
-                        <Button fx:id="Bc8" layoutX="380.0" layoutY="62.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bc8" layoutX="380.0" layoutY="62.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="Bs16" layoutX="21.0" layoutY="108.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bs16" layoutX="21.0" layoutY="108.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs17" layoutX="66.0" layoutY="108.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs18" layoutX="111.0" layoutY="108.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs19" layoutX="156.0" layoutY="108.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
@@ -86,9 +97,9 @@
                         <Button fx:id="Bs22" layoutX="290.0" layoutY="108.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs23" layoutX="335.0" layoutY="108.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="Bc24" layoutX="381.0" layoutY="108.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bc24" layoutX="381.0" layoutY="108.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="Bs32" layoutX="20.0" layoutY="154.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bs32" layoutX="20.0" layoutY="154.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs33" layoutX="65.0" layoutY="154.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs34" layoutX="110.0" layoutY="154.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs35" layoutX="155.0" layoutY="154.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
@@ -97,9 +108,9 @@
                         <Button fx:id="Bs38" layoutX="289.0" layoutY="154.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs39" layoutX="334.0" layoutY="154.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
 
-                        <Button fx:id="Bc40" layoutX="380.0" layoutY="154.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bc40" layoutX="380.0" layoutY="154.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="Bs48" layoutX="20.0" layoutY="200.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bs48" layoutX="20.0" layoutY="200.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs49" layoutX="65.0" layoutY="200.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs50" layoutX="110.0" layoutY="200.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs51" layoutX="155.0" layoutY="200.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
@@ -108,9 +119,9 @@
                         <Button fx:id="Bs54" layoutX="289.0" layoutY="200.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs55" layoutX="334.0" layoutY="200.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="Bc56" layoutX="380.0" layoutY="200.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bc56" layoutX="380.0" layoutY="200.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="Bs64" layoutX="20.0" layoutY="246.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bs64" layoutX="20.0" layoutY="246.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs65" layoutX="65.0" layoutY="246.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs66" layoutX="110.0" layoutY="246.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs67" layoutX="155.0" layoutY="246.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
@@ -119,20 +130,20 @@
                         <Button fx:id="Bs70" layoutX="289.0" layoutY="246.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs71" layoutX="334.0" layoutY="246.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="Bc72" layoutX="380.0" layoutY="246.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bc72" layoutX="380.0" layoutY="246.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="Bs80" layoutX="20.0" layoutY="293.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bs80" layoutX="20.0" layoutY="293.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs81" layoutX="65.0" layoutY="293.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs82" layoutX="110.0" layoutY="293.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs83" layoutX="155.0" layoutY="293.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs84" layoutX="199.0" layoutY="293.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs85" layoutX="244.0" layoutY="293.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs86" layoutX="289.0" layoutY="293.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
-                        <Button fx:id="Bs87" layoutX="334.0" layoutY="293.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
+                        <Button fx:id="Bs87" layoutX="335.0" layoutY="293.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="Bc88" layoutX="380.0" layoutY="293.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bc88" layoutX="380.0" layoutY="293.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="Bs96" layoutX="20.0" layoutY="339.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bs96" layoutX="20.0" layoutY="339.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs97" layoutX="65.0" layoutY="339.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs98" layoutX="110.0" layoutY="339.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs99" layoutX="155.0" layoutY="339.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
@@ -141,9 +152,9 @@
                         <Button fx:id="Bs102" layoutX="289.0" layoutY="339.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs103" layoutX="334.0" layoutY="339.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="Bc104" layoutX="380.0" layoutY="339.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bc104" layoutX="380.0" layoutY="339.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="Bs112" layoutX="20.0" layoutY="385.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bs112" layoutX="20.0" layoutY="385.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs113" layoutX="65.0" layoutY="385.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs114" layoutX="110.0" layoutY="385.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs115" layoutX="155.0" layoutY="385.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
@@ -152,12 +163,17 @@
                         <Button fx:id="Bs118" layoutX="289.0" layoutY="385.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                         <Button fx:id="Bs119" layoutX="334.0" layoutY="385.0" mnemonicParsing="false" styleClass="button_square_unactivated" stylesheets="@style.css" />
                   
-                        <Button fx:id="Bc120" layoutX="380.0" layoutY="385.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
+                              <Button fx:id="Bc120" layoutX="380.0" layoutY="385.0" mnemonicParsing="false" styleClass="button_circle_unactivated" stylesheets="@style.css" />
               </children>
             </AnchorPane>
           </content>
         </ScrollPane>
-        <AnchorPane maxHeight="440.0" maxWidth="310.0" minHeight="440.0" minWidth="310.0" prefHeight="440.0" prefWidth="310.0" SplitPane.resizableWithParent="false" />
+        <AnchorPane maxHeight="440.0" maxWidth="310.0" minHeight="440.0" minWidth="310.0" prefHeight="440.0" prefWidth="310.0" SplitPane.resizableWithParent="false">
+               <children>
+                  <ChoiceBox layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="246.0" />
+                  <Button layoutX="271.0" layoutY="14.0" mnemonicParsing="false" text="+" />
+                  <Pagination layoutY="384.0" pageCount="10" prefHeight="56.0" prefWidth="310.0" />
+               </children></AnchorPane>
       </items>
     </SplitPane>
     <HBox id="HBox" alignment="BOTTOM_CENTER" maxHeight="20.0" maxWidth="900.0" minHeight="20.0" minWidth="900.0" prefHeight="20.0" prefWidth="900.0" spacing="5.0" VBox.vgrow="NEVER">

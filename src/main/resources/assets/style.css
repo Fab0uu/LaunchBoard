@@ -90,6 +90,36 @@
     -fx-background-color: #171717db;
 }
 
-.menu-tree {
-    -fx-background-color: #0022ffdb;
+.menu {
+    -fx-background-color: #171717db;
+    -fx-text-background-color: white;
+    -fx-border-width: 0px;
+}
+
+.virtual-flow:focus-within, .list-view:focus-within:vertical {
+    -fx-background-color: #171717db;
+    -fx-border-width: 0px;
+}
+
+.regular-cell:filled:odd, .regular-cell:filled:even {
+    -fx-background-color: #171717db;
+    -fx-border-width: 0px;
+}
+
+.regular-cell:filled:odd:focused, .regular-cell:filled:even:focused {
+    -fx-background-color: #262626db;
+    -fx-border-width: 0px;
+}
+
+.regular-cell:filled:odd:hover, .regular-cell:filled:even:hover {
+    -fx-background-color: #1f1f1fdb;
+    -fx-border-width: 0px;
+}
+
+.menu_button {
+    -fx-padding:10;
+}
+
+.card:filled {
+    -fx-max-width: 100px;
 }
