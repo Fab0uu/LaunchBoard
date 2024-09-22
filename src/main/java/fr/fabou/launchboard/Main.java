@@ -5,6 +5,6 @@ public class Main {
     public static void main(String[] args) {
         displayer.display();
         initMidi init = new initMidi();
-        //init.init();
+        //init.init();a
     }
 }
